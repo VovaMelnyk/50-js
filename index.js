@@ -1,4 +1,153 @@
 // # Модуль 1. Занятие 2. Ветвления. Циклы
+// ("Mango" && "Poly") || false;
+// // 1) "Poly" || false
+// // 2) 'Poly
+
+// false || ("Mango" && "Poly");
+// // 1) false || "Polly"
+// // 2) "Polly"
+
+// let name = "Bob";
+// name = 14;
+// name = "John";
+
+// const age = 13;
+// age = 15;
+// age = "name";
+
+// const userNumber = prompt("Enter number");
+
+// 10 / 2 = 5
+// 11 / 2 = 5.5
+
+// if (userNumber % 2 === 0) {
+//   console.log("Парне число");
+// } else {
+//   console.log("НЕ парне число");
+// }
+
+// let number = 2;
+// number = number + 1; // number = 2 + 1 // 3
+// number += 1;
+// number++;
+
+// number = number + 10;
+// number += 10;
+// number -=10
+
+// const userNumber = prompt("Enter User Number");
+
+// if (userNumber === 10) {
+//   console.log("ok");
+// } else if (userNumber === 100) {
+//   console.log("Good");
+// } else {
+//   console.log("Bad");
+// }
+
+// switch (userNumber) {
+//   case 10:
+//     console.log("ok");
+//     break;
+//   case 100:
+//     console.log("Good");
+//     break;
+//   default:
+//     console.log("Bad");
+//     break;
+// }
+
+// if (userNumber < 10) {
+//   console.log("ok");
+// } else if (userNumber > 100 && userNumber < 1000) {
+//   console.log("Good");
+// } else {
+//   console.log("Bad");
+// }
+
+// switch (true) {
+//   case userNumber < 10:
+//     console.log("ok");
+//     break;
+//   case userNumber > 100 && userNumber < 1000:
+//     console.log("Good");
+//     break;
+//   default:
+//     console.log("Bad");
+//     break;
+// }
+
+// console.log("Polly" && "Mango"); // "Mango"
+// console.log(null && false); // null
+
+// if ("Polly" && "Mango") {
+//   // 'Mango' => true => console.log("a");
+//   console.log("a");
+// } else {
+//   console.log("b");
+// }
+
+// if (null && false) {
+//   // null => false => console.log("b")
+//   console.log("a");
+// } else {
+//   console.log("b");
+// }
+
+// if ('Mango' || "Polly" && 'Mango' || false) { // 'Mango' ||  "Mango" || false => 'Mango' => true => a
+//   // null => false => console.log("b")
+//   console.log("a");
+// } else {
+//   console.log("b");
+// }
+
+// if ("mango" || "polly") {
+//   // mango => true => a
+//   console.log("a");
+// } else {
+//   console.log("b");
+// }
+
+// Вивести в консоль числа від 1 до 10 які кратні 2
+
+// for (let i = 1; i <= 10; i += 1) {
+//   if (i % 2 !== 0) {
+//     continue;
+//   }
+//   console.log(i);
+// }
+
+// for (let i = 1; i <= 10; i += 1) {
+//   if (i === 5) {
+//     break;
+//   }
+//   console.log(i);
+// }
+
+// for (let i = 1; i <= 10; i += 1) {
+//   switch (i) {
+//     case 5:
+//       break;
+//     default:
+//       break;
+//   }
+//   console.log(i);
+// }
+
+//i = 1 => 1 / 2 = 0.5 => пропускаємо це число
+// i = 2 => 2 / 2 = 1 => 2
+
+// let name;
+
+// console.log("name", name);
+
+// name = "Bob";
+
+// const name;
+
+// console.log(name)
+
+// const
 
 // console.log(true && 3);
 
@@ -16,7 +165,7 @@
 
 // console.log(null || 2 || undefined);
 
-// console.log((1 && null && 2) > 0);
+// console.log((1 && null && 2) > 0); // null > 0 => false
 
 // console.log(null || (2 && 3) || 4);
 
@@ -36,14 +185,21 @@
 // ```js
 // const hours = 14;
 // const minutes = 26;
-// let timestring;
+// let timeString;
 
-// if (minutes > 0) {
-//   timestring = `${hours} ч. ${minutes} мин.`;
+// if (minutes === 0) {
+//   timeString = `${hours} год`;
 // } else {
-//   timestring = `${hours} ч.`;
+//   timeString = `${hours}год ${minutes}хв`;
 // }
-// console.log(timestring);
+
+// const minutes = 74; // 1 год 14 хв
+// const minutes = 1023; // ?
+// const minutesValue = minutes % 60;
+// const hours = Math.floor(minutes / 60);
+// console.log(`${hours}:${minutesValue}`);
+// console.log(`${hours}год ${minutesValue}хв`);
+
 // ```
 
 // ## Example 3 - Ветвеления
@@ -124,6 +280,51 @@
 // ```js
 // const max = 100;
 // const min = 20;
+
+// for (let i = min; i <= max; i += 1) {
+//   if (i % 5 === 0) {
+//     console.log(i);
+//   }
+// }
+
+// for (let i = min; i <= max; i += 5) {
+//   console.log(i);
+// }
+
+// let i = min;
+
+// while (i <= max) {
+//   if (i % 5 === 0) {
+//     console.log(i);
+//   }
+//   i += 1;
+// }
+
+// let i = min;
+
+// do {
+//   if (i % 5 === 0) {
+//     console.log(i);
+//   }
+//   i += 1;
+// } while (i <= max);
+
+// const password = "admin";
+// let userPassword;
+
+// do {
+//   userPassword = prompt("Enter password");
+//   console.log(userPassword);
+// } while (true);
+
+// const result = 2 + 3; // 5
+
+// function add() {
+//   return 2 + 3;
+// }
+
+// console.log(add());
+
 // ```
 
 // ## Example 9 - Ввод пользователя и ветвления

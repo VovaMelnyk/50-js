@@ -161,8 +161,65 @@
 // console.log(min); // 1
 // ```
 
-
 /////// lesson 4 module 2
+
+// addEventListener()
+// add()
+// minus()
+
+// const add = function (a, b) {
+//   return a + b;
+// };
+
+// const result = add(5, 10);
+
+// console.log("result", result);
+// const numbers = [];
+// const words = [];
+
+// const addNumber = function (array) {
+//   const number = prompt("Enter number");
+//   array.push(number);
+// };
+
+// addNumber(numbers);
+// addNumber(words);
+
+// function roomSpace(w, h) {
+//   return w * h;
+// }
+
+// function showArgument() {
+//   // const arguments = []
+//  // arguments.add()
+//   console.log(arguments);
+// }
+// //
+// showArgument(1);
+// showArgument(2, 3, 4, 5, 6);
+
+// margin: 12px
+// margin : 12px 15px
+// margin: 12px 15px 23px
+// margin : 12px 15px 23px 56px
+
+// function add() {
+//   console.log(5 + 4);
+//   console.log("test");
+//   return 2;
+// }
+
+// add();
+
+// roomSpace(2, 3);
+// roomSpace(5, 4);
+// roomSpace(2, 5);
+
+// console.log("numbers", numbers);
+
+// function add() {
+//   return a + b;
+// }
 
 // # Модуль 2. Занятие 4. Функции
 
@@ -181,8 +238,63 @@
 // ```js
 // const bmi = calcBMI('88,3', '1.75');
 // console.log(bmi); // 28.8
+
+// 1) Запитати в користувача вагу - prompt
+// 2) Запитати в користувача зріст - prompt
+// 3) Порахувати індекс маси тіла по формулі - Math
+// 4) На основі формули показати результат - if else
+
 // ```
 
+// function calcBmi() {
+//   const weight = prompt("Вкажіть свою вагу в кілограмах");
+//   const height = prompt("Вкажіть свій зріст в метрах");
+
+//   const bmi = weight / Math.pow(height, 2);
+
+//   if (bmi < 18.5) {
+//     alert("Недостатня маса тіла");
+//   } else if (bmi >= 18.5 && bmi < 24.9) {
+//     alert("Норма");
+//   } else {
+//     alert("Надлишкова маса тіла");
+//   }
+// }
+
+// function collectInfo() {
+//   const weight = prompt("Вкажіть свою вагу в кілограмах");
+//   const height = prompt("Вкажіть свій зріст в метрах");
+//   return [weight, height];
+// }
+
+// function getBmi(array) {
+//   const weight = array[0];
+//   const height = array[1];
+//   return weight / Math.pow(height, 2); // TODO
+//   //   return array[0] / Math.pow(array[1], 2);
+// }
+
+// function showResult(bmi) {
+//   if (bmi < 18.5) {
+//     alert("Недостатня маса тіла");
+//   } else if (bmi >= 18.5 && bmi < 24.9) {
+//     alert("Норма");
+//   } else {
+//     alert("Надлишкова маса тіла");
+//   }
+// }
+
+// function calcBmi() {
+//   const info = collectInfo();
+//   const result = getBmi(info);
+//   showResult(result);
+// }
+
+// calcBmi();
+
+// calcBmi();
+// calcBmi();
+// calcBmi();
 // ## Example 2 - Меньшее из чисел
 
 // Напиши функцию `min(a,b)`, которая возвращает меньшее из чисел `a` и `b`.
@@ -245,7 +357,21 @@
 // массиве.
 
 // ```js
-// function findLargestNumber(numbers) {}
+// function findLargestNumber(numbers) {
+//   // numbers = [49, 4, 7, 83, 12]
+//   let largestNumber = numbers[0]; // largestNumber = 49
+//   for (let number of numbers) {
+//     // 1) number = 49 => 49 < 49
+//     // 2) number = 4 => 49 < 4
+//     // 3) number = 7 => 49 < 7
+//     // 4) number = 83 => 49 < 83 => largestNumber = 83
+//     // 5) number = 12 => 83 < 12
+//     if (largestNumber < number) {
+//       largestNumber = number;
+//     }
+//   }
+//   return largestNumber; // 83
+// }
 
 // console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
 // console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83

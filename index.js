@@ -1,5 +1,30 @@
 // # Модуль 3. Занятие 1. Объекты
 
+// const books = [
+//   {
+//     title: "The Last Kingdom",
+//   },
+//   {
+//     title: "На берегу спокойных вод",
+//   },
+//   {
+//     title: "Сон смешного человека",
+//   },
+// ];
+
+// const bookNames = [];
+
+// for (const book of books) {
+//   // book = {
+//   //     title: "The Last Kingdom",
+//   //   },
+
+//   bookNames.push(book.title);
+//   bookNames.push(book["title"]);
+// }
+
+// console.log(bookNames); // ["The Last Kingdom", "На берегу спокойных вод", "Сон смешного человека"]
+
 // ## Example 1 - Основы обьектов
 
 // Напиши скрипт, который, для объекта `user`, последовательно:

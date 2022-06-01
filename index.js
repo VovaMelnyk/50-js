@@ -1,3 +1,4 @@
+// "use strict";
 // // # Модуль 3. Занятие 1. Объекты
 
 // // const books = [
@@ -142,71 +143,71 @@
 //  * Типов транзацкий всего два.
 //  * Можно положить либо снять деньги со счета.
 //  */
-const Transaction = {
-  DEPOSIT: "deposit",
-  WITHDRAW: "withdraw",
-};
+// const Transaction = {
+//   DEPOSIT: "deposit",
+//   WITHDRAW: "withdraw",
+// };
 
 // /*
 //  * Каждая транзакция это объект со свойствами: id, type и amount
 //  */
 // const balance = "balance";
 
-const account = {
-  // Текущий баланс счета
-  balance: 0,
+// const account = {
+//   // Текущий баланс счета
+//   balance: 0,
 
-  // История транзакций
-  transactions: [],
+//   // История транзакций
+//   transactions: [],
 
-  /*
-   * Метод создает и возвращает объект транзакции.
-   * Принимает сумму и тип транзакции.
-   */
-  // createTransaction(amount, type) {
-  //   return {
-  //     amount,
-  //     type,
-  //     id: account.transactions.length,
-  //   };
+/*
+ * Метод создает и возвращает объект транзакции.
+ * Принимает сумму и тип транзакции.
+ */
+// createTransaction(amount, type) {
+//   return {
+//     amount,
+//     type,
+//     id: account.transactions.length,
+//   };
 
-  createTransaction(amount, type) {
-    // const this = account
-    return {
-      amount,
-      type,
-      id: this.transactions.length, // account.transactions.length
-    };
+// createTransaction(amount, type) {
+//   // const this = account
+//   return {
+//     amount,
+//     type,
+//     id: this.transactions.length, // account.transactions.length
+//   };
 
-    // return {
-    //   amount: amount,
-    //   type: type,
-    //   id: account.transactions.length,
-    // };
-  },
+//   // return {
+//   //   amount: amount,
+//   //   type: type,
+//   //   id: account.transactions.length,
+//   // };
+// },
 
-  /*
-   * Метод отвечающий за добавление суммы к балансу.
-   * Принимает сумму танзакции.
-   * Вызывает createTransaction для создания объекта транзакции
-   * после чего добавляет его в историю транзакций
-   */
-  deposit(amount) {
-    // const this = account
-    this.balance += amount;
-    const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
-    this.transactions.push(transaction);
-  },
+/*
+ * Метод отвечающий за добавление суммы к балансу.
+ * Принимает сумму танзакции.
+ * Вызывает createTransaction для создания объекта транзакции
+ * после чего добавляет его в историю транзакций
+ */
+// deposit(amount) {
+//   // const this = account
+//   this.balance += amount;
+//   const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
+//   this.transactions.push(transaction);
+// },
 
-  /*
-   * Метод отвечающий за снятие суммы с баланса.
-   * Принимает сумму танзакции.
-   * Вызывает createTransaction для создания объекта транзакции
-   * после чего добавляет его в историю транзакций.
-   *
-   * Если amount больше чем текущий баланс, выводи сообщение
-   * о том, что снятие такой суммы не возможно, недостаточно средств.
-   */
+/*
+ * Метод отвечающий за снятие суммы с баланса.
+ * Принимает сумму танзакции.
+ * Вызывает createTransaction для создания объекта транзакции
+ * после чего добавляет его в историю транзакций.
+ *
+ * Если amount больше чем текущий баланс, выводи сообщение
+ * о том, что снятие такой суммы не возможно, недостаточно средств.
+ */
 //   withdraw(amount) {
 //     // const this = account
 //     if (amount > this.balance) {
@@ -274,9 +275,15 @@ const account = {
 // независимых аргументов.
 
 // ```js
-// function calcBMI(weight, height) {
-//   const numericWeight = Number(weight.replace(',', '.'));
-//   const numericHeight = Number(height.replace(',', '.'));
+// function calcBMI({ weight, height }) {
+//   const numericWeight = Number(weight.replace(",", "."));
+//   const numericHeight = Number(height.replace(",", "."));
+//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
+// }
+// function calcBMI(clientParams) {
+//   const { weight, height } = clientParams;
+//   const numericWeight = Number(weight.replace(",", "."));
+//   const numericHeight = Number(height.replace(",", "."));
 //   return Number((numericWeight / numericHeight ** 2).toFixed(1));
 // }
 
@@ -320,6 +327,23 @@ const account = {
 //   }
 // }
 
+// function printContactsInfo({ names, phones }) {
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
+// }
+
+// function printContactsInfo(data) {
+//   const { names, phones } = data;
+//   const nameList = names.split(",");
+//   const phoneList = phones.split(",");
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+//   }
+// }
+
 // // Было
 // // printContactsInfo(
 // //   'Jacob,William,Solomon,Artemis',
@@ -339,24 +363,73 @@ const account = {
 // независимых аргументов.
 
 // ```js
-// function getBotReport(companyName, repairBots, defenceBots) {
-//   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
+// function getBotReport(companyInfo) {
+//   return `${companyInfo.companyName} has ${
+//     companyInfo.bots.repair + companyInfo.bots.defence
+//   } bots in stock. Repair bots count is ${
+//     companyInfo.bots.repair
+//   }. Defence bots count is ${companyInfo.bots.defence}`;
 // }
 
-// // Было
-// // console.log(getBotReport('Cyberdyne Systems', 150, 50));
+// function getBotReport(companyInfo) {
+//   const companyName = companyInfo.companyName;
+//   const repairBots = companyInfo.bots.repair;
+//   const defenceBots = companyInfo.bots.defence;
+//   return `${companyName} has ${
+//     repairBots + defenceBots
+//   } bots in stock. Repair bots count is ${repairBots}. Defence bots count is ${defenceBots}`;
+// }
 
-// // Ожидается
+// function getBotReport(companyInfo) {
+//   // this = undefind || window
+//   // const companyInfo = {
+//   // companyName: "Cyberdyne Systems",
+//   //   bots: {
+//   //     repair: 150,
+//   //     defence: 50,
+//   //   },
+//   // }
+
+//   const { companyName, bots } = companyInfo;
+//   // const companyName = companyInfo.companyName;
+//   // const bots = companyInfo.bots
+//   const { repair: repairBots, defence: defenceBots } = bots;
+//   // const repairBots = bots.repair
+//   // const defenceBots = bots.defence
+//   return `${companyName} has ${
+//     repairBots + defenceBots
+//   } bots in stock. Repair bots count is ${repairBots}. Defence bots count is ${defenceBots}`;
+// }
+
+// // // Было
+// // // console.log(getBotReport('Cyberdyne Systems', 150, 50));
+
+// // // Ожидается
 // console.log(
 //   getBotReport({
-//     companyName: 'Cyberdyne Systems',
+//     companyName: "Cyberdyne Systems",
 //     bots: {
 //       repair: 150,
 //       defence: 50,
 //     },
-//   }),
+//   })
 // ); // "Cyberdyne Systems has 200 bots in stock"
-// ```
+// // ```
+
+// window.getBotReport({
+//   companyName: "Cyberdyne Systems",
+//   bots: {
+//     repair: 150,
+//     defence: 50,
+//   },
+// });
+
+// const user = {
+//   name: "Bob",
+//   age: 23,
+// };
+
+// const { name, age } = user;
 
 // ## Example 4 - Деструктуризация
 
@@ -398,73 +471,70 @@ const account = {
 
 // ## Example 5 - Операция spread
 
-// Дополни функцию `createContact(partialContact)` так, чтобы она возвращала новый
-// объект контакта с добавленными свойствами `id` и `createdAt`, а также `list` со
-// значением "default" если в `partialContact` нет такого свойства.
+// const settings = {
+//   theme: "light",
+//   fontFamily: "default",
+//   navbar: "fixed",
+//   markdown: "basic",
+// };
 
-// ```js
-// // Решение
-// function createContact(partialContact) {
+// const updatesettings = {
+//   theme: "dark",
+//   fontFamily: "monospace",
+//   navbar: "static",
+//   markdown: "basic",
+// };
+
+// function updateSettingsHandler(defaultSettings, userSettings) {
 //   return {
-//     list: 'default',
-//     ...partialContact,
-//     id: generateId(),
-//     createdAt: Date.now(),
+//     ...defaultSettings,
+//     ...userSettings,
 //   };
 // }
 
-// console.log(
-//   createContact({
-//     name: 'Mango',
-//     email: 'mango@mail.com',
-//     list: 'friends',
-//   }),
-// );
-// console.log(
-//   createContact({
-//     name: 'Poly',
-//     email: 'poly@hotmail.com',
-//   }),
-// );
+// const siteSettings = {
+//   ...settings,
+//   ...updatesettings,
+// };
 
-// function generateId() {
-//   return '_' + Math.random().toString(36).substr(2, 9);
-// }
-// ```
+// const siteSettings = {
+//   theme: "dark",
+//   fontFamily: "monospace",
+//   navbar: "static",
+//   markdown: "basic",
+// };
+
+// // const technology = ["HTML", "CSS"];
+// const programLanguages = ["Javascript", "Typescript"];
+// // const frameworks = ["React", "Next"];
+// // const fullStack = [...technology, ...programLanguages, ...frameworks];
+// const fullStack = ["HTML", "CSS", ...programLanguages, "React", "Next"];
 
 // ## Example 6 - Операция rest
 
-// Напиши функцию `transformUsername(user)` так, чтобы она возвращала новый обьект
-// со свойством `fullName`, вместо `firstName` и `lastName`.
-
-// ```js
-// // Решение
-// function transformUsername({ firstName, lastName, ...otherProps }) {
-//   return {
-//     fullName: `${firstName} ${lastName}`,
-//     ...otherProps,
-//   };
+// function getMargin() {
+//   console.log(Array.from(arguments));
 // }
 
-// console.log(
-//   transformId({
-//     id: 1,
-//     firstName: 'Jacob',
-//     lastName: 'Mercer',
-//     email: 'j.mercer@mail.com',
-//     friendCount: 40,
-//   }),
-// );
+// function getMargin(...args) {
+//   console.log(args);
+// }
 
-// console.log(
-//   transformId({
-//     id: 2,
-//     firstName: 'Adrian',
-//     lastName: 'Cross',
-//     email: 'a.cross@hotmail.com',
-//     friendCount: 20,
-//   }),
-// );
+// getMargin(12);
+// getMargin(12, 15);
+// getMargin(12, 15, 20);
+// getMargin(12, 15, 20, 45);
+
+// function getUserInfo(name, age, address, ...props) {}
+
+// getUserInfo("Bob", 34, "London", "0987654321", "user@gmail.com");
+// getUserInfo("Bob", 34, "London");
+
+// 12
+// 12 12
+// 12 12 12
+// 12 12 12 12
+
 // ```
 
 // Можно разобрать вот это тему Изменение имени переменной

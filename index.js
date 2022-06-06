@@ -1,332 +1,364 @@
-// "use strict";
-// // # Модуль 3. Занятие 1. Объекты
+// Поясніть, будь ласка, що тут відбувається:
 
-// // const books = [
-// //   {
-// //     title: "The Last Kingdom",
-// //   },
-// //   {
-// //     title: "На берегу спокойных вод",
-// //   },
-// //   {
-// //     title: "Сон смешного человека",
-// //   },
-// // ];
+// const numbers = [5, 10, 15, 20, 25];
 
-// // const bookNames = [];
-
-// // for (const book of books) {
-// //   // book = {
-// //   //     title: "The Last Kingdom",
-// //   //   },
-
-// //   bookNames.push(book.title);
-// //   bookNames.push(book["title"]);
+// // // Класичний for
+// // for (let i = 0; i < numbers.length; i += 1) {
+// //   console.log(`Індекс ${i}, значення ${numbers[i]}`);
 // // }
 
-// // console.log(bookNames); // ["The Last Kingdom", "На берегу спокойных вод", "Сон смешного человека"]
+// // Метод перебирання forEach
+// numbers.forEach(function (number, index) {
+//   console.log(`Індекс ${index}, значення ${number}`);
+// });
 
-// // ## Example 1 - Основы обьектов
+// numbers.forEach(logElement);
+// numbers.forEach(showElement);
+// // const numbers = [5, 10, 15, 20, 25];
+// // 1) number = 5, index = 0, arr = [5, 10, 15, 20, 25]
+// // 2) number = 10, index = 1, arr = [5, 10, 15, 20, 25]
+// // 3) number = 15, index = 2, arr = [5, 10, 15, 20, 25]
+// // 4) number = 20, index = 3, arr = [5, 10, 15, 20, 25]
+// // 5) number = 25, index = 4, arr = [5, 10, 15, 20, 25]
 
-// // Напиши скрипт, который, для объекта `user`, последовательно:
+// function logElement(number, idx, arr) {
+//   console.log(`Індекс ${index}, значення ${number}`);
+// }
 
-// // - добавляет поле `mood` со значением `'happy'`
-// // - заменяет значение `hobby` на `'skydiving'`
-// // - заменяет значение `premium` на `false`
-// // - выводит содержимое объекта `user` в формате `ключ:значение` используя
-// //   `Object.keys()` и `for...of`
+// function showElement(number, idx, arr) {
+//   console.log(`значення ${element}`);
+// }
 
-// // ### Код
+// Під капотом працює цикл for
+// for (let i = 0; i < numbers.length; i += 1) {
+//
+// }
 
-// // ```js
-// // const user = {
-// //   name: "Mango",
-// //   age: 20,
-// //   hobby: "html",
-// //   premium: true,
-// // };
+// function processCall(recipient, onAvailable, onNotAvailable) {
+// // Имитируем доступность абонента случайным числом
+// const isRecipientAvailable = Math.random() > 0.5;
 
-// // user.mood = "happy";
-// // user.hobby = "skydiving";
-// // user.premium = false;
+// if (!isRecipientAvailable) {
+// onNotAvailable(recipient);
+// return;
+// }
 
-// // const keys = Object.keys(user);
-// // for (const key of keys) {
-// //   console.log(`${key}:${user[key]}`);
-// // }
+// onAvailable(recipient);
+// }
 
-// // console.log("keys", keys);
-// // ```
+// function takeCall(name) {
+// console.log(`Соединяем с ${name}, ожидайте...`);
+// // Логика принятия звонка
+// }
 
-// // ## Example 2 - метод Object.values()
+// function activateAnsweringMachine(name) {
+// console.log(`Абонент ${name} недоступен, оставьте сообщение.`);
+// // Логика активации автоответчика
+// }
 
-// // У нас есть объект, в котором хранятся зарплаты нашей команды. Напишите код для
-// // суммирования всех зарплат и сохраните результат в переменной sum. Должно
-// // получиться 390. Если объект `salaries` пуст, то результат должен быть 0.
+// function leaveHoloMessage(name) {
+// console.log(`Абонент ${name} недоступен, записываем голограмму.`);
+// // Логика записи голограммы
+// }
 
-// // ### Код
+// processCall("Манго", takeCall, activateAnsweringMachine);
+// processCall("Поли", takeCall, leaveHoloMessage);
 
-// // ```js
-// // const salaries = {
-// //   John: 100,
-// //   Ann: 160,
-// //   Pete: 130,
-// // };
+// # Модуль 4. Занятие 7. Коллбеки. Стрелочные функции. forEach
 
-// // console.log(salaries);
-// // const salaries1 = {};
-// // // const salaries = {};
-// // // 1) Робимо ф - ю де параметром є обєкт
-// // // 2) Потрібно просумувати значення обєкта
-// // // 3) Додати перевірка на порожній обєкт
+// ## Example 1 - Коллбек функции
 
-// // const calcSalaries = function (salaries) {
-// //   const values = Object.values(salaries);
-// //   if (values.length === 0) {
-// //     return 0;
-// //   }
-// //   let total = 0;
-// //   for (const value of values) {
-// //     total += value;
-// //   }
-// //   return total;
-// // };
-// // // calcSalaries(salaries1);
-// // console.log(calcSalaries(salaries));
-// // let total = 0;
-// // for (const salary in salaries) {
-// //   total += salaries[salary];
-// // }
+// Напишите следующие функции:
 
-// // console.log(total);
-
-// // ```
-
-// // ## Example 3 - Массив объектов
-
-// // Напишите ф-цию `calcTotalPrice(stones, stoneName)`, которая принимает массив
-// // обьектов и строку с названием камня. Ф-ция считает и возвращает общую стоимость
-// // камней с таким именем, ценой и количеством из обьекта
-
-// // ### Код
-
-// // ```js
-// // const stones = [
-// //   { name: "Изумруд", price: 1300, quantity: 4 },
-// //   { name: "Бриллиант", price: 2700, quantity: 3 },
-// //   { name: "Сапфир", price: 400, quantity: 7 },
-// //   { name: "Щебень", price: 200, quantity: 2 },
-// // ];
-
-// // function calcTotalPrice(stones, stoneName) {
-// //   let targetStone = null;
-// //   for (const stone of stones) {
-// //     if (stone.name === stoneName) {
-// //       targetStone = stone;
-// //     }
-// //   }
-// //   return targetStone.price * targetStone.quantity;
-// // }
-
-// // console.log(calcTotalPrice(stones, "Щебень"));
-
-// // ```
-
-// // ## Example 4 - Комплексные задачи
-
-// // Напиши скрипт управления личным кабинетом интернет банка. Есть объект `account`
-// // в котором необходимо реализовать методы для работы с балансом и историей
-// // транзакций.
+// - `createProduct(obj, callback)` - принимает объект товара без id, а также
+//   колбек. Функция создаёт обьект товара, добавляя ему уникальный идентификатор в
+//   свойство `id` и вызывает колбек передавая ему созданный обьект.
+// - `logProduct(product)` - коллбек принимающий обьект продукта и логирующий его в
+//   консоль
+// - `logTotalPrice(product)` - коллбек принимающий обьект продукта и логирующий
+//   общую стоимость товара в консоль
 
 // ```js
-// /*
-//  * Типов транзацкий всего два.
-//  * Можно положить либо снять деньги со счета.
-//  */
-// const Transaction = {
-//   DEPOSIT: "deposit",
-//   WITHDRAW: "withdraw",
-// };
+// // Решение
+// function createProduct(partialProduct, callback) {
+//   const product = { id: Date.now(), ...partialProduct };
+//   callback(product);
+// }
 
-// /*
-//  * Каждая транзакция это объект со свойствами: id, type и amount
-//  */
-// const balance = "balance";
+// function logProduct(product) {
+//   console.log(product);
+// }
+
+// function logTotalPrice(product) {
+//   console.log(product.price * product.quantity);
+// }
+
+// 1) Додати логіку генерації id
+// 2) Навчити нашу ф-ю працювати з callback
+// 3) callback має вміти приймати обєкт товара
+
+// createProduct({ name: "🍎", price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: "🍋", price: 20, quantity: 5 }, logTotalPrice);
+
+// function createProduct(product, callback) {
+//   const id = Date.now();
+//   const newProduct = { ...product, id };
+//   //   product.id = id;
+//   callback(newProduct);
+//   // callback = logTotalPrice
+//   // logTotalPrice(newProduct);
+// }
+
+// function logProduct(item) {
+//   console.log(item);
+// }
+
+// function logTotalPrice(item) {
+//   console.log(item.price * item.quantity);
+//   return item.price * item.quantity;
+// }
+
+// ```
+
+// ## Example 2 - Коллбек функции
+
+// Добавьте объекту `account` методы `withdraw(amount, onSuccess, onError)` и
+// `deposit(amount, onSuccess, onError)`, где первый параметр это сумма операции, а
+// второй и третий - колбеки.
+
+// Метод `withdraw` вызывает onError если amount больше TRANSACTION_LIMIT или
+// this.balance, и onSuccess в противном случае.
+
+// Метод `deposit` вызывает onError если amount больше TRANSACTION_LIMIT или меньше
+// либо равен нулю, и onSuccess в противном случае.
+
+// ```js
+// // Решение
+// const TRANSACTION_LIMIT = 1000;
 
 // const account = {
-//   // Текущий баланс счета
-//   balance: 0,
-
-//   // История транзакций
-//   transactions: [],
-
-/*
- * Метод создает и возвращает объект транзакции.
- * Принимает сумму и тип транзакции.
- */
-// createTransaction(amount, type) {
-//   return {
-//     amount,
-//     type,
-//     id: account.transactions.length,
-//   };
-
-// createTransaction(amount, type) {
-//   // const this = account
-//   return {
-//     amount,
-//     type,
-//     id: this.transactions.length, // account.transactions.length
-//   };
-
-//   // return {
-//   //   amount: amount,
-//   //   type: type,
-//   //   id: account.transactions.length,
-//   // };
-// },
-
-/*
- * Метод отвечающий за добавление суммы к балансу.
- * Принимает сумму танзакции.
- * Вызывает createTransaction для создания объекта транзакции
- * после чего добавляет его в историю транзакций
- */
-// deposit(amount) {
-//   // const this = account
-//   this.balance += amount;
-//   const transaction = this.createTransaction(amount, Transaction.DEPOSIT);
-//   this.transactions.push(transaction);
-// },
-
-/*
- * Метод отвечающий за снятие суммы с баланса.
- * Принимает сумму танзакции.
- * Вызывает createTransaction для создания объекта транзакции
- * после чего добавляет его в историю транзакций.
- *
- * Если amount больше чем текущий баланс, выводи сообщение
- * о том, что снятие такой суммы не возможно, недостаточно средств.
- */
-//   withdraw(amount) {
-//     // const this = account
-//     if (amount > this.balance) {
-//       return "Не вистачає коштів";
+//   username: 'Jacob',
+//   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
 //     }
-//     this.balance -= amount;
-//     const transaction = this.createTransaction(amount, Transaction.WITHDRAW);
-//     this.transactions.push(transaction);
 //   },
-
-//   /*
-//    * Метод возвращает текущий баланс
-//    */
-//   getBalance() {
-//     return this.balance;
-//   },
-
-//   /*
-//    * Метод ищет и возвращает объект транзации по id
-//    */
-//   getTransactionDetails(id) {
-//     for (const transaction of this.transactions) {
-//       if (transaction.id === id) {
-//         return transaction;
-//       }
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
 //     }
-//     return "Операції не знайдено";
-//   },
-
-//   /*
-//    * Метод возвращает количество средств
-//    * определенного типа транзакции из всей истории транзакций
-//    */
-//   getTransactionTotal(type) {
-//     let total = 0;
-//     for (const transaction of this.transactions) {
-//       if (transaction.type === type) {
-//         total += transaction.amount;
-//       }
-//     }
-//     return total;
 //   },
 // };
 
-// console.log(account.getBalance()); // 0
-// account.deposit(150);
-// account.deposit(550);
-// account.deposit(50);
-// account.deposit(1150);
-// account.withdraw(350);
-// account.withdraw(150);
-// console.log(account.getBalance()); // 100
-// console.log(account.transactions);
-// console.log(account.getTransactionDetails(100));
-// console.log(account.getTransactionTotal(Transaction.WITHDRAW));
-// // ```
+// function handleSuccess(message) {
+//   console.log(`✅ Success! ${message}`);
+// }
+// function handleError(message) {
+//   console.log(`❌ Error! ${message}`);
+// }
 
-// Урок №2
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
+// ```
 
-// # Модуль 3 Занятие 6. Деструктуризация и rest/spread
+// ## Example 3 - Коллбек функции
 
-// ## Example 1 - Деструктуризация
-
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора
-// независимых аргументов.
+// Напишите функцию `each(array, callback)`, которая первым параметром ожидает
+// массив, а вторым - функцию, которая применится к каждому элементу массива.
+// Функция each должна вернуть новый массив, элементами которого будут результаты
+// вызова коллбека.
 
 // ```js
-// function calcBMI({ weight, height }) {
-//   const numericWeight = Number(weight.replace(",", "."));
-//   const numericHeight = Number(height.replace(",", "."));
-//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
-// }
-// function calcBMI(clientParams) {
-//   const { weight, height } = clientParams;
-//   const numericWeight = Number(weight.replace(",", "."));
-//   const numericHeight = Number(height.replace(",", "."));
-//   return Number((numericWeight / numericHeight ** 2).toFixed(1));
+// // Решение
+// function each(array, callback) {
+//   const newArr = [];
+//   for (const el of array) {
+//     newArr.push(callback(el));
+//   }
+//   return newArr;
 // }
 
-// // Было
-// // console.log(calcBMI('88,3', '1.75'));
-// // console.log(calcBMI('68,3', '1.65'));
-// // console.log(calcBMI('118,3', '1.95'));
-
-// // Ожидается
 // console.log(
-//   calcBMI({
-//     weight: '88,3',
-//     height: '1.75',
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value * 2;
 //   }),
 // );
 // console.log(
-//   calcBMI({
-//     weight: '68,3',
-//     height: '1.65',
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value - 10;
 //   }),
 // );
 // console.log(
-//   calcBMI({
-//     weight: '118,3',
-//     height: '1.95',
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return Math.sqrt(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.ceil(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.floor(value);
 //   }),
 // );
 // ```
 
-// ## Example 2 - Деструктуризация
+// ## Example 4 - Стрелочные функции
 
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора
-// независимых аргументов.
+// Выполните рефакторинг кода используя стрелочные функции.
 
 // ```js
-// function printContactsInfo(names, phones) {
-//   const nameList = names.split(',');
-//   const phoneList = phones.split(',');
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
+// function createProduct(partialProduct, callback) {
+//   const product = { id: Date.now(), ...partialProduct };
+//   callback(product);
+// }
+
+// function logProduct(product) {
+//   console.log(product);
+// }
+
+// function logTotalPrice(product) {
+//   console.log(product.price * product.quantity);
+// }
+
+// createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
+// createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
+// ```
+
+// ## Example 5 - Стрелочные функции
+
+// Выполните рефакторинг кода используя стрелочные функции.
+
+// ```js
+// const TRANSACTION_LIMIT = 1000;
+
+// const account = {
+//   username: 'Jacob',
+//   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+// };
+
+// function handleSuccess(message) {
+//   console.log(`✅ Success! ${message}`);
+// }
+// function handleError(message) {
+//   console.log(`❌ Error! ${message}`);
+// }
+
+// account.withdraw(2000, handleSuccess, handleError);
+// account.withdraw(600, handleSuccess, handleError);
+// account.withdraw(300, handleSuccess, handleError);
+// account.deposit(1700, handleSuccess, handleError);
+// account.deposit(0, handleSuccess, handleError);
+// account.deposit(-600, handleSuccess, handleError);
+// account.deposit(600, handleSuccess, handleError);
+// ```
+
+// ## Example 6 - Инлайн стрелочные функции
+
+// Выполните рефакторинг кода используя стрелочные функции.
+
+// ```js
+// function each(array, callback) {
+//   const newArray = [];
+//   for (let el of array) {
+//     const result = callback(el);
+//     newArray.push(result);
+//   }
+//   return newArray;
+// }
+
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value * 2;
+//   })
+// );
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return value - 10;
+//   })
+// );
+// console.log(
+//   each([64, 49, 36, 25, 16], function (value) {
+//     return Math.sqrt(value);
+//   })
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.ceil(value);
+//   }),
+// );
+// console.log(
+//   each([1.5, 2.1, 16.4, 9.7, 11.3], function (value) {
+//     return Math.floor(value);
+//   }),
+// );
+// ```
+
+// ## Example 7 - Метод forEach
+
+// Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
+
+// ```js
+// function logItems(items) {
+//   console.log(items);
+//   for (let i = 0; i < items.length; i += 1) {
+//     console.log(`${i + 1} - ${items[i]}`);
 //   }
 // }
 
+// function logItems(items) {
+//   items.forEach(function (item, index) {
+//     console.log(`${index + 1} - ${item}`);
+//   });
+// }
+
+// logItems(["Mango", "Poly", "Ajax"]);
+// logItems(["🍎", "🍇", "🍑", "🍌", "🍋"]);
+// ```
+
+// ## Example 8 - Метод forEach
+
+// Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
+
+// ```js
 // function printContactsInfo({ names, phones }) {
 //   const nameList = names.split(",");
 //   const phoneList = phones.split(",");
@@ -335,266 +367,34 @@
 //   }
 // }
 
-// function printContactsInfo(data) {
-//   const { names, phones } = data;
-//   const nameList = names.split(",");
-//   const phoneList = phones.split(",");
-//   for (let i = 0; i < nameList.length; i += 1) {
-//     console.log(`${nameList[i]}: ${phoneList[i]}`);
-//   }
-// }
+function printContactsInfo({ names, phones }) {
+  const nameList = names.split(",");
+  const phoneList = phones.split(",");
+  nameList.forEach(function (name, index) {
+    console.log(`${name}: ${phoneList[index]}`);
+  });
+}
 
-// // Было
-// // printContactsInfo(
-// //   'Jacob,William,Solomon,Artemis',
-// //   '89001234567,89001112233,890055566377,890055566300',
-// // );
-
-// // Ожидается
-// printContactsInfo({
-//   names: 'Jacob,William,Solomon,Artemis',
-//   phones: '89001234567,89001112233,890055566377,890055566300',
-// });
+printContactsInfo({
+  names: "Jacob,William,Solomon,Artemis",
+  phones: "89001234567,89001112233,890055566377,890055566300",
+});
 // ```
 
-// ## Example 3 - Глубокая деструктуризация
+// ## Example 9 - Метод forEach
 
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора
-// независимых аргументов.
-
-// ```js
-// function getBotReport(companyInfo) {
-//   return `${companyInfo.companyName} has ${
-//     companyInfo.bots.repair + companyInfo.bots.defence
-//   } bots in stock. Repair bots count is ${
-//     companyInfo.bots.repair
-//   }. Defence bots count is ${companyInfo.bots.defence}`;
-// }
-
-// function getBotReport(companyInfo) {
-//   const companyName = companyInfo.companyName;
-//   const repairBots = companyInfo.bots.repair;
-//   const defenceBots = companyInfo.bots.defence;
-//   return `${companyName} has ${
-//     repairBots + defenceBots
-//   } bots in stock. Repair bots count is ${repairBots}. Defence bots count is ${defenceBots}`;
-// }
-
-// function getBotReport(companyInfo) {
-//   // this = undefind || window
-//   // const companyInfo = {
-//   // companyName: "Cyberdyne Systems",
-//   //   bots: {
-//   //     repair: 150,
-//   //     defence: 50,
-//   //   },
-//   // }
-
-//   const { companyName, bots } = companyInfo;
-//   // const companyName = companyInfo.companyName;
-//   // const bots = companyInfo.bots
-//   const { repair: repairBots, defence: defenceBots } = bots;
-//   // const repairBots = bots.repair
-//   // const defenceBots = bots.defence
-//   return `${companyName} has ${
-//     repairBots + defenceBots
-//   } bots in stock. Repair bots count is ${repairBots}. Defence bots count is ${defenceBots}`;
-// }
-
-// // // Было
-// // // console.log(getBotReport('Cyberdyne Systems', 150, 50));
-
-// // // Ожидается
-// console.log(
-//   getBotReport({
-//     companyName: "Cyberdyne Systems",
-//     bots: {
-//       repair: 150,
-//       defence: 50,
-//     },
-//   })
-// ); // "Cyberdyne Systems has 200 bots in stock"
-// // ```
-
-// window.getBotReport({
-//   companyName: "Cyberdyne Systems",
-//   bots: {
-//     repair: 150,
-//     defence: 50,
-//   },
-// });
-
-// const user = {
-//   name: "Bob",
-//   age: 23,
-// };
-
-// const { name, age } = user;
-
-// ## Example 4 - Деструктуризация
-
-// Перепиши функцию так, чтобы она принимала объект параметров со свойствами
-// `companyName` и `stock` и выводила репорт о количестве товаров на складе любой
-// компании.
+// Выполните рефакторинг кода используя метод `forEach` и стрелочные функции.
 
 // ```js
-// // Решение
-// function getStockReport({ companyName, stock }) {
+// function calсulateAverage(...args) {
 //   let total = 0;
-//   for (const value of Object.values(stock)) {
-//     total += value;
+//   for (let i = 0; i < args.length; i++) {
+//     total += args[i];
 //   }
-//   return `${companyName} has ${total} items in stock`;
+//   return total / args.length;
 // }
 
-// console.log(
-//   getStockReport({
-//     companyName: 'Cyberdyne Systems',
-//     stock: {
-//       repairBots: 150,
-//       defenceBots: 50,
-//     },
-//   }),
-// ); // "Cyberdyne Systems has 200 items in stock"
-
-// console.log(
-//   getStockReport({
-//     companyName: 'Belacci',
-//     stock: {
-//       shoes: 20,
-//       skirts: 10,
-//       hats: 5,
-//     },
-//   }),
-// ); // "Belacci has 35 item in stock"
+// console.log(calсulateAverage(1, 2, 3, 4)); // 2.5
+// console.log(calсulateAverage(14, 8, 2)); // 8
+// console.log(calсulateAverage(27, 43, 2, 8, 36)); // 23.2
 // ```
-
-// ## Example 5 - Операция spread
-
-// const settings = {
-//   theme: "light",
-//   fontFamily: "default",
-//   navbar: "fixed",
-//   markdown: "basic",
-// };
-
-// const updatesettings = {
-//   theme: "dark",
-//   fontFamily: "monospace",
-//   navbar: "static",
-//   markdown: "basic",
-// };
-
-// function updateSettingsHandler(defaultSettings, userSettings) {
-//   return {
-//     ...defaultSettings,
-//     ...userSettings,
-//   };
-// }
-
-// const siteSettings = {
-//   ...settings,
-//   ...updatesettings,
-// };
-
-// const siteSettings = {
-//   theme: "dark",
-//   fontFamily: "monospace",
-//   navbar: "static",
-//   markdown: "basic",
-// };
-
-// // const technology = ["HTML", "CSS"];
-// const programLanguages = ["Javascript", "Typescript"];
-// // const frameworks = ["React", "Next"];
-// // const fullStack = [...technology, ...programLanguages, ...frameworks];
-// const fullStack = ["HTML", "CSS", ...programLanguages, "React", "Next"];
-
-// ## Example 6 - Операция rest
-
-// function getMargin() {
-//   console.log(Array.from(arguments));
-// }
-
-// function getMargin(...args) {
-//   console.log(args);
-// }
-
-// getMargin(12);
-// getMargin(12, 15);
-// getMargin(12, 15, 20);
-// getMargin(12, 15, 20, 45);
-
-// function getUserInfo(name, age, address, ...props) {}
-
-// getUserInfo("Bob", 34, "London", "0987654321", "user@gmail.com");
-// getUserInfo("Bob", 34, "London");
-
-// 12
-// 12 12
-// 12 12 12
-// 12 12 12 12
-
-// ```
-
-// Можно разобрать вот это тему Изменение имени переменной
-// const firstBook = {
-//   title: "The Last Kingdom",
-//   coverImage:
-//     "https://images-na.ssl-images-amazon.com/images/I/51b5YG6Y1rL.jpg",
-// };
-
-// const {
-//   title: firstTitle, // const firstTitle = firstBook.title
-//   // coverImage: firstCoverImage = "https://via.placeholder.com/640/480", // const firstCoverImage = firstBook.coverImage
-// } = firstBook;
-// const firstCoverImage = "https://via.placeholder.com/640/480";
-
-// console.log(firstTitle); // The Last Kingdom
-// console.log(firstCoverImage); // https://images-na.ssl-images-amazon.com/images/I/51b5YG6Y1rL.jpg
-
-// const secondBook = {
-//   title: "Сон смешного человека",
-// };
-
-// const {
-//   title: secondTitle,
-//   coverImage: secondCoverImage = "https://via.placeholder.com/640/480",
-// } = secondBook;
-
-// console.log(secondTitle); // Сон смешного человека
-// console.log(secondCoverImage); // https://via.placeholder.com/640/480
-
-// объясните пожалуйста что тут происходит
-// function countProps(object) {
-//   let propCount = 0;
-//   // Change code below this line
-//   for (const key in object) {
-//     // object = firstBook
-//     // key = title
-//     // key = coverImage
-//     if (object.hasOwnProperty(key)) {
-//       propCount += 1; // = 2
-//     }
-//   }
-//   // Change code above this line
-//   return propCount; // 2
-// }
-
-// const firstBook = {
-//   title: "The Last Kingdom",
-//   coverImage:
-//     "https://images-na.ssl-images-amazon.com/images/I/51b5YG6Y1rL.jpg",
-// };
-
-// countProps(firstBook);
-// const first = { propA: 5, propB: 10, propC: 50 };
-// const second = { propC: 15, propD: 20 };
-
-// const third = { ...first, ...second };
-// a 5, b 10, c 15, d 20
-// console.log(third); // { propA: 5, propB: 10, propC: 15, propD: 20 }
-
-// const fourth = { ...second, ...first };
-//  d 20, a 5, b 10, c 50
-// console.log(fourth); // { propA: 5, propB: 10, propC: 50, propD: 20 }

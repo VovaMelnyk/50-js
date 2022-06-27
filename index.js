@@ -1,229 +1,118 @@
-// // class User {
-// //   #name;
-// //   constructor(name) {
-// //     this.#name = name;
-// //   }
-// // }
+// const technologies = ["HTML", "CSS", "JavaScript", "React", "Node"];
+// const list = document.querySelector(".list");
 
-// // class User {
-// //   constructor(name, age) {
-// //     this._name = name;
-// //     this._age = age;
-// //   }
-// // }
+// // const markup = technologies
+// //   .map((technology) => `<li class="list-item">${technology}</li>`)
+// //   .join("");
 
-// const animal = {
-//   legs: 4,
-//   tail: 1,
-//   eyes: 2,
-// };
+// const markup = technologies.reduce(
+//   (acc, technology) => acc + `<li class="list-item">${technology}</li>`,
+//   ""
+// );
 
-// const cat = Object.create(animal);
-// // обєкт буде порожній
-// // Наслідуємо для cat всі властивості від animal
+// // Check the console, you'll see a single string with HTML tags
+// console.log(markup);
 
-// console.log("cat", cat);
+// // Adding all the markup in one operation
+// list.innerHTML = markup;
 
-// class Human {
-//   constructor(legs, eyes) {
-//     this.legs = legs;
-//     this.eyes = eyes;
-//   }
-// }
-// class User extends Human {
-//   constructor(legs, eyes, name, age) {
-//     super(legs, eyes);
-//     this.name = name;
-//     this.age = age;
-//   }
-// }
-
-// const user = new User(2, 2, "Bob", 14);
-
-// console.log("user", user);
-
-// const pizzaPalace = {
-//   pizzas: ["Ultracheese", "Smoked", "Four meats"],
-//   order(pizzaName, onSuccess, onError) {
-//     let error = `There is no pizza with a name ${pizzaName} in the assortment.`;
-
-//     if (this.pizzas.includes(pizzaName)) {
-//       return onSuccess(pizzaName);
-//     } else {
-//       return onError(error);
-//     }
+// const colors = [
+//   {
+//     label: "red",
+//     color: "#FF0000",
 //   },
-// };
-// // Change code above this line
-
-// // Callback for onSuccess
-// function makePizza(pizzaName) {
-//   return `Your order is accepted. Cooking pizza ${pizzaName}.`;
-// }
-
-// // Method calls with callbacks
-// pizzaPalace.order("Smoked", makePizza, onOrderError);
-// // pizzaPalace.order("Four meats", makeDrink, onOrderError);
-
-// // Callback for onError
-// // function onOrderError(error) {
-// //   return `Error! ${error}`;
-// // }
-
-// // function makeDrink(drinkName) {
-// //   return "Create Drink";
-// // }
-// // pizzaPalace.order("Big Mike", makePizza, onOrderError);
-// // pizzaPalace.order("Vienna", makePizza, onOrderError);
-
-// // const numbers = [1, 2, 3, 4, 5, 6, 7];
-// // // console.log(numbers.map((number) => number * 2));
-// // function mylt(number) {
-// //   return number * 2;
-// // }
-// // console.log(numbers.map(mylt)
-
-// //   // numbers.map(mylt)
-
-// // console.log(numbers.map((number) => number / 2));
-// // console.log(numbers.map((number) => number + 20));
-// // console.log(numbers.map((number) => number - 5));
-
-// // 1) запускає цикл
-// // 2) створює новий масив
-// // 3) отримує доступ до кожного елементу масиву
-// // 4) Пушить результат в новий масив
-// // 5) cb - розширює роботу з елементом масив
-
-// const tweets = [
-//   { id: "000", likes: 5, tags: ["js", "nodejs"] },
-//   { id: "001", likes: 2, tags: ["html", "css"] },
-//   { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },
-//   { id: "003", likes: 8, tags: ["css", "react"] },
-//   { id: "004", likes: 0, tags: ["js", "nodejs", "react"] },
+//   {
+//     label: "green",
+//     color: "#00FF00",
+//   },
+//   {
+//     label: "blue",
+//     color: "#0000FF",
+//   },
+//   {
+//     label: "yellow",
+//     color: "#FFFF00",
+//   },
 // ];
 
-// // Пройдемо по всіх елементах колекції і додамо значення властивості likes
-// // до акумулятора, початкове значення якого вкажемо 0.
-// const likes = tweets.reduce((totalLikes, tweet) => totalLikes + tweet.likes, 0);
-// // 1) tweets = [з обєктами]
-// // 2) totalLikes (acc) = 0
-// // 3) tweet - obj з масиву
-// //
+// const createMarkup = (colors) => {
+//   return colors.map((color) => {
+//     const button = document.createElement("button");
+//     button.type = "button";
+//     button.textContent = color.label;
+//     button.style.backgroundColor = color.color;
 
-// // i1) totalLikes = 0 => tweet = { id: "000", likes: 5, tags: ["js", "nodejs"] }, => tweet.likes = 5 => 0 + 5 = 5
-// // i2) totalLikes = 5 => tweet = { id: "001", likes: 2, tags: ["html", "css"] } => tweet.likes = 2 => 5 + 2 = 7
-// // i3) totalLikes = 7 => tweet = { id: "002", likes: 17, tags: ["html", "js", "nodejs"] },=> tweet.likes = 17 => 7 + 17 = 24
-// // i5) 32
-
-// console.log(likes); // 32
-
-// Мабуть, підрахунок лайків - не одиночна операція, тому напишемо функцію
-// // для підрахунку лайків з колекції
-// const countLikes = (tweets) => {
-//   return tweets.reduce((totalLikes, tweet) => totalLikes + tweet.likes, 0);
+//     return button;
+//   });
 // };
 
-// console.log(countLikes(tweets)); // 32
+// const container = document.querySelector(".container");
+// container.append(...createMarkup(colors));
 
-// почему тут  callback() - це виклик методу getFullName без об'єкта.
-// Как он определяет что именно метод getFullName?
+// console.log("createMarkup", createMarkup(colors));
+// const container = document.querySelector(".container");
 
-// Если 2й вариант Какой метод будет в callback?
+// console.log(container.dataset.type);
 
-// const customer = {
-//   firstName: "Jacob",
-//   lastName: "Mercer",
-//   getFullName() {
-//     return `${this.firstName} ${this.lastName}`;
-//   },
-// };
-// function makeMessage(callback) {
-//   // callback() - це виклик методу getFullName без об'єкта
+const main = document.querySelector("#main");
 
-//   console.log(callback); // `${this.firstName} ${this.lastName}`;
-//   console.log(`Обробляємо заявку від ${callback()}.`);
-// }
-// // makeMessage(customer.getFullName.bind(customer)); // Буде помилка у виклику функції
-// makeMessage(customer.getFullName); // Буде помилка у виклику функції
+// create element
+const title = document.createElement("h1");
+const figure = document.createElement("figure");
+const img = document.createElement("img");
+const figcaption = document.createElement("figcaption");
+// add atr
+title.id = "title";
+figure.id = "img-div";
+img.id = "image";
+img.src =
+  "https://i.discogs.com/LGcISJRXQR30Q--KBtFgh8nf5bAY-UT9PfVp4mPM4_8/rs:fit/g:sm/q:90/h:788/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTg0MjM2/LTE0Nzc2ODIxNDgt/NDUyOC5qcGVn.jpeg";
+img.alt = "Michel Legrand conducting his orchestra.";
+figcaption.id = "img-caption";
+// add text content
+title.textContent = "- Michel Legrand -";
+figcaption.textContent = "Michel Legrand conducting his orcherstra.";
+// insert to page
+main.append(title);
+main.append(figure);
+figure.append(img);
+figure.append(figcaption);
 
-// а если так 2й вариант:
-// const customer = {
-//   firstName: "Jacob",
-//   lastName: "Mercer",
-//   getFullName() {
-//     return `${this.firstName} ${this.lastName}`;
-//   },
-//   getName() {
-//     return `${this.firstName}`;
-//   },
-// };
-// function makeMessage(callback) {
-//   // callback() - який буде метод?
-//   console.log(`Обробляємо заявку від ${callback()}.`);
-// }
-// makeMessage(customer.getFullName); // Буде помилка у виклику функції
+const article = `
+<article id="tribute-info">
+            <div id="intro">
+                <p>&bull; Michel Legrand (1932 - 2019) was a famous French musician. &bull;</p>
+            </div>
+            <p><u>Here are some major facts about him:</u></p>
+            <ul>
+                
+            </ul>
+            <blockquote id="quote">
+                <p>Writing is a mental thing, while playing is essentially a physical feeling.</p>
+                <cite>-- Michel Legrand</cite>
+            </blockquote>
+            <hr>
+            <p>To find out more about him, feel free to have a look at his biography on <a id="tribute-link"
+                    href="https://en.wikipedia.org/wiki/Michel_Legrand" target="_blank">Wikipedia</a>.</p>
+        </article> 
+`;
 
-// Ваша функція повинна завжди повертати весь об'єкт збірки записів.
-// Якщо prop це не tracks і value не є пустим рядком, то оновіть або встановіть prop альбому до value.
-// Якщо prop є tracks але альбом немає властивості tracks, створіть пустий масив та додайте value до нього.
-// Якщо prop є tracks та value не є пустим рядком, додайте value до кінця наявного масиву tracks у альбомі.
-// Якщо value є пустим рядком, видаліть дану властивість prop з альбому.
+// main.innerHTML = article;
+main.insertAdjacentHTML("beforeend", article);
 
-// Налаштування
-const recordCollection = {
-  2548: {
-    albumTitle: "Slippery When Wet",
-    artist: "Bon Jovi",
-    tracks: ["Let It Rock", "You Give Love a Bad Name"],
-  },
-  2468: {
-    albumTitle: "1999",
-    artist: "Prince",
-    tracks: ["1999", "Little Red Corvette"],
-  },
-  1245: {
-    artist: "Robert Palmer",
-    tracks: [],
-  },
-  5439: {
-    albumTitle: "ABBA Gold",
-  },
-};
+const items = [
+  "He was born in Paris, France on February 24<sup>th</sup>, 1932.",
+  "His father was himself a conductor and composer, and his mother, who was Armenian, was the sister of a conductor.",
+  "His sister was a Soprano and a member of the Swingle Singers.",
+  "Along his career, he composed more than two hundred film and television scores.",
+  "He was also a Jazz player and worked with giants like Miles Davis or Stan Getz.",
+  "He won a huge amount of awards, including Oscars, Grammy Awards and Golden Globes.",
+  "He died of sepsis during the night of the 25<sup>th</sup> to 26<sup>th</sup> January 2019 in the American Hospital of Paris.",
+  "He was interred at the P&egrave;re Lachaise Cemetery in Paris, France.",
+];
 
-// const user = {
-//   name: "Bob",
-// };
+const createList = (items) =>
+  items.reduce((acc, item) => acc + `<li>${item}</li>`, "");
 
-// user.name;
-// user["name"];
-
-// console.log(recordCollection.5439.albumTitle);
-
-function updateRecords(records, id, prop, value) {
-  if (prop !== "tracks" && value !== "") {
-    records[id][prop] = value; // recordCollection.5439.artist = 'ABBA'
-    // records.id.prop = value; // recordCollection.id.prop = 'ABBA'
-  } else if (
-    prop === "tracks" &&
-    records[id].hasOwnProperty("tracks") === false &&
-    value !== ""
-  ) {
-    records[id][prop] = [value]; //recordCollection[5439][tracks] = ['Hello']
-    // якщо ми хочемо оновити треки і їх ще немає в обєкті - тоді ми додаємо масив з нови треком
-  } else if (prop === "tracks" && value !== "") {
-    records[id][prop].push(value);
-  } else if (value === "") {
-    delete records[id][prop];
-  }
-
-  return records;
-}
-
-updateRecords(recordCollection, 5439, "artist", "ABBA");
-updateRecords(recordCollection, 5439, "tracks", "Hello");
-updateRecords(recordCollection, 5439, "tracks", "Apple");
-updateRecords(recordCollection, 5439, "tracks", "");
-
-
-console.log(recordCollection);
+const list = document.querySelector("ul");
+list.insertAdjacentHTML("beforeend", createList(items));

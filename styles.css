@@ -141,3 +141,33 @@ hr {
     font-size: 0.9rem;
   }
 }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+}
+
+.modal {
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: auto;
+  padding: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.close {
+}
+
+.hide {
+  display: none;
+}

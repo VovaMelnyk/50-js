@@ -1,230 +1,118 @@
-// function slider(slideCount) {
-//   let photoNumbers = slideCount;
+// 1000 ms
+// thorotle - 300ms
+// 1000 / 300 = 3.33
 
-//   function animation(time) {
-//     console.log(`animate sliders ${photoNumbers} with time ${time}` );
-//   }
+// 1 event - 1 ms - scroll
+// 2 event - 301ms - scroll
+// 3 event - 601ms - scroll
+// 4 event - 901ms - scroll
 
-//   return animation;
-// }
+// 300 ms - scroll
+// debounce
+// 1000 ms
+// scroll - 90 разів
 
-// const slider1 = slider(10); // local scope {photoNumbers: 10, animation => знає про число 10}
-// console.log(slider1(200));
-
-// const slider2 = slider(20); // local scope {photoNumbers: 20, animation => знає про число 20}
-// console.log(slider2(400));
-
-// const slider3 = slider(30);// local scope {photoNumbers: 30, animation => знає про число 30}
-// console.log(slider3(1000));
-
+// 1000 ms - scroll => 300 ms => debounce
+// console.log(user);
+// debugger;
 // const user = {
 //   name: "John",
+//   surname: "Smith",
 //   age: 30,
-//   status: "Premium",
 // };
-
-// // console.log(user.name);
-// // console.log(user.age);
-// // console.log(user.status);
-
-// const userChoice = prompt("Enter object key"); // userChoice = "age"
-// console.log(user[userChoice]); // user['age']
-
-// // console.log(user["name"]);
-// // console.log(user["age"]);
-// // console.log(user["status"]);
-
-// const book = {
-//   title: "The Great Gatsby",
-//   author: "F. Scott Fitzgerald",
-//   publisher: "Scribner",
-//   year: 1925,
-//   pages: 180,
-//   price: 20,
-// };
-
-// const propKey = "title";
-// const bookAuthor = book[propKey];
-// console.log(bookAuthor); // 'F. Scott Fitzgerald'
-
-//
-
-// const user = {
-//   name: "John",
-//   age: 30,
-//   status: "Premium",
-// };
-
-// for (const key of user) {
-//   console.log(key);
+// debugger;
+// const number = 10;
+// debugger;
+// function logNumbers(number) {
+//   console.log(number);
+//   debugger;
 // }
+// debugger;
+// logNumbers(number);
+// debugger;
 
-// 1) Лічильник - змінна яка контролює скільки разів відпрацював цикл - i = 0
+// console.log(user);
+// 0) Потрібно достукатися до нашого інпута
+// 1) Навішати подію інпут на тег інпут
+// 2) Кожен раз при події маємо считувати данні з інпута (value)
+// 3) Отримати доступ до span
+// 4) записати значення інпута в стилі нашого тега span (span.styles.fontSize = value)
 
-// 2) Умова при якій цикл зупинеться - цикл зупинеться якщо лічильиник буде більше за довжину масиву
+// 1) Потрібно відмалювати розмітку галереї використовуючи масив картинок
+// 2) При рендері галереї потрібно підставити в розмітку правильні поля
+// 3) Потрібно навішати клік на вашу галерею використовуючи делегування
+// 4) Визначати елемент на який клікнули через event.target
+// 5) Потрібно считати данні з атрибута data - source і підставити їх в модальне вікно
+// 6) Має зявитися модальне вікно з картинкою я ви отримали з атрибута data-source
 
-// 3) Код який змінює значення лічильника - i++
-
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// for (let i = 0; i < numbers.length; i += 1) {
-//   //   if (i % 2 !== 0) {
-//   //     continue;
-//   //   }
-//   if (numbers[i] === 3) {
-//     break;
-//   }
-//   console.log(numbers[i]);
-// }
-
-// let i = 0;
-// while (i < numbers.length) {
-//   console.log(numbers[i]);
-//   i = +1;
-// }
-
-// let i = 0;
-// do {
-//   console.log(numbers[i]);
-//   i = +1;
-// } while (i < numbers.length);
-
-// const numbers = [1, 2, 3, 4, "six"];
-
-// numbers.push(5);
-
-// console.log(numbers);
-
-// () при арефметичних операціях => запуск функції => частина конструкцій в JS (цикли, if, switch, створення функцій)
-// [] - масиви => доступ до ключа обєкта якщо ключ динамічний, доступ до елементу масиву по індексу, деструктуризація
-// {} - обєкт => частина конструкцій в JS (цикли, if, switch, створення функцій), тіло функції, деструктуризація, клас
-
-// function bar() {
-//   console.log("bar");
-// }
-
-// function baz() {
-//   console.log("baz");
-// }
-
-// function foo() {
-//   console.log("foo");
-//   bar();
-//   baz();
-// }
-
-// foo();
-
-// function pow(number, power) {
-//   if (power === 0) {
-//     return 1;
-//   }
-
-//   return number * pow(number, power - 1);
-// }
-
-// pow(2, 3);
-
-// 1) number = 2 power = 3 => 2 * (pow(2, 2) => 4 = 8) =>
-// number = 2 power = 2 => 2 * (pow(2, 1) => 2 = 4) =>
-// number = 2 power = 1 => 2 * (pow(2, 0) => 1 = 2) =>
-// number = 2 power = 0 => 1
-
-// pow(2, 0); // 1
-// pow(2, 1); // 2 * 1 => 2
-// pow(2, 2); // 2 * 2 => 4
-// pow(2, 3); 2 * 4 => 8
-
-// "use strict";
-
-// const user = {
-//   name: "John",
-//   age: 30,
-//   //   showUserThis: function () {
-//   //     console.log(this); // user
-//   //     const arrowThis = () => {
-//   //       console.log("arrow", this); // user
-//   //     };
-//   //     arrowThis();
-//   //   },
-//   arrowThis: () => {
-//     console.log("arrow", this); // window
+// const technologies = [
+//   {
+//     title: "HTML",
+//     description: "HyperText Markup Language",
 //   },
-// };
+//   {
+//     title: "CSS",
+//     description: "Cascading Style Sheets",
+//   },
+//   {
+//     title: "JavaScript",
+//     description: "JavaScript language",
+//   },
+//   {
+//     title: "React",
+//     description: "JavaScript library",
+//   },
+// ];
 
-// const arrowThis = () => {
-//   console.log("arrow", this); // window
-// };
-
-// function showThis() {
-//   console.log("function", this);
+// function createLi(array) {
+//   return array.reduce(
+//     (acc, item) =>
+//       acc + `<li data-description = "${item.description}">${item.title}</li>`,
+//     ""
+//   );
 // }
 
-// showThis.call(user);
-// showThis.apply(user);
-// const bindedFunction = showThis.bind(user);
-// bindedFunction();
-
-// user.showUserThis();
-// arrowThis();
-// user.arrowThis.call(user);
-// user.arrowThis.bind(user)();
-
-// call - coma
-// apply - array
-
-// const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-// const myMap = (arr, callback) => {
-//   const result = [];
-//   for (let element of arr) {
-//     result.push(callback(element));
-//   }
-//   return result;
-// };
-
-// const variant1 = numbers.map((number) => number * 2);
-// const variant2 = numbers.map((number) => number - 2);
-// const variant3 = numbers.map((number) => number + 100);
-// const variant4 = numbers.filter((number) => number > 5);
-
-// "use strict";
-
-// function createTransaction(amount, onError, onSuccess) {
-//   if (amount < 0) {
-//     onError();
-//   } else {
-//     onSuccess(amount);
-//   }
+// function createLi(array) {
+//   return array
+//     .map(
+//       (item) =>
+//         `<li data-description = "${item.description}">${item.title}</li>`
+//     )
+//     .join("");
 // }
 
-// function error() {
-//   console.log("Transaction failed");
+// const result = createLi(technologies);
+
+// const list = document.querySelector(".list");
+// const p = document.querySelector(".description");
+// list.insertAdjacentHTML("beforeend", result);
+
+// function listHandler(e) {
+//   const description = e.target.dataset.description;
+//   p.textContent = description;
 // }
 
-// function success(amount) {
-//   console.log(`Transaction successful. Amount: ${this}`);
+// list.addEventListener("click", listHandler);
+
+// const lightbox = new SimpleLightbox(".gallery a", {
+//   /* options */
+// });
+
+// const list = document.querySelector(".list");
+// const li = `<li>3</li>`;
+// // list.innerHTML = li;
+
+// list.insertAdjacentHTML("beforeend", li);
+
+// const button = document.querySelector("button");
+// const modal = document.querySelector(".modal");
+// function openModal() {
+//   modal.classList.add("open");
+//   window.addEventListener("keydown", KeyboardHandler);
 // }
 
-// function USDsuccess(amount) {
-//   console.log(`Transaction successful. Amount: ${amount} USD`);
+// function closeModal() {
+//   modal.classList.remove("open");
+//   window.removeEventListener("keydown", KeyboardHandler);
 // }
-
-// createTransaction("100 UAH", error, success.bind(user));
-// createTransaction("100 USD", error, USDsuccess.bind(hotel));
-
-const form = document.querySelector(".form");
-const email = document.querySelector(".email");
-const password = document.querySelector(".password");
-
-function handleSubmit(e) {
-  e.preventDefault();
-  const formData = {
-    email: email.value,
-    password: password.value,
-  };
-  console.log(formData);
-  form.reset();
-}
-
-form.addEventListener("submit", handleSubmit);
+// button.addEventListener("click", openModal);

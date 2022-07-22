@@ -1,118 +1,76 @@
-// 1000 ms
-// thorotle - 300ms
-// 1000 / 300 = 3.33
+// const text = "Hello World";
+// console.log(JSON.parse(text));
 
-// 1 event - 1 ms - scroll
-// 2 event - 301ms - scroll
-// 3 event - 601ms - scroll
-// 4 event - 901ms - scroll
+// const form = document.querySelector("#message-form"); // отримали доступ до форми
+// const output = document.querySelector("#output"); // отримали доступ до span куди будемо виводити дані
+// const LOCALSTORAGE_KEY = "goit-example-message"; // ключ для збереження даних
 
-// 300 ms - scroll
-// debounce
-// 1000 ms
-// scroll - 90 разів
+// updateOutput();
 
-// 1000 ms - scroll => 300 ms => debounce
-// console.log(user);
-// debugger;
-// const user = {
-//   name: "John",
-//   surname: "Smith",
-//   age: 30,
-// };
-// debugger;
-// const number = 10;
-// debugger;
-// function logNumbers(number) {
-//   console.log(number);
-//   debugger;
-// }
-// debugger;
-// logNumbers(number);
-// debugger;
+// form.addEventListener("submit", saveMessage);
 
-// console.log(user);
-// 0) Потрібно достукатися до нашого інпута
-// 1) Навішати подію інпут на тег інпут
-// 2) Кожен раз при події маємо считувати данні з інпута (value)
-// 3) Отримати доступ до span
-// 4) записати значення інпута в стилі нашого тега span (span.styles.fontSize = value)
-
-// 1) Потрібно відмалювати розмітку галереї використовуючи масив картинок
-// 2) При рендері галереї потрібно підставити в розмітку правильні поля
-// 3) Потрібно навішати клік на вашу галерею використовуючи делегування
-// 4) Визначати елемент на який клікнули через event.target
-// 5) Потрібно считати данні з атрибута data - source і підставити їх в модальне вікно
-// 6) Має зявитися модальне вікно з картинкою я ви отримали з атрибута data-source
-
-// const technologies = [
-//   {
-//     title: "HTML",
-//     description: "HyperText Markup Language",
-//   },
-//   {
-//     title: "CSS",
-//     description: "Cascading Style Sheets",
-//   },
-//   {
-//     title: "JavaScript",
-//     description: "JavaScript language",
-//   },
-//   {
-//     title: "React",
-//     description: "JavaScript library",
-//   },
-// ];
-
-// function createLi(array) {
-//   return array.reduce(
-//     (acc, item) =>
-//       acc + `<li data-description = "${item.description}">${item.title}</li>`,
-//     ""
-//   );
+// function saveMessage(evt) {
+//   evt.preventDefault();
+//   localStorage.setItem(LOCALSTORAGE_KEY, form.elements.message.value);
+//   updateOutput();
+//   form.reset();
 // }
 
-// function createLi(array) {
-//   return array
-//     .map(
-//       (item) =>
-//         `<li data-description = "${item.description}">${item.title}</li>`
-//     )
-//     .join("");
+// function updateOutput() {
+//   output.textContent = localStorage.getItem(LOCALSTORAGE_KEY) || "";
 // }
 
-// const result = createLi(technologies);
+// const form = document.querySelector("#message-form");
 
-// const list = document.querySelector(".list");
-// const p = document.querySelector(".description");
-// list.insertAdjacentHTML("beforeend", result);
+// console.log(form.elements);
+// // const userName = document.querySelector(".user-name");
 
-// function listHandler(e) {
-//   const description = e.target.dataset.description;
-//   p.textContent = description;
-// }
+// form.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   //   const {
+//   //     elements: { username, password },
+//   //   } = event.currentTarget;
+//   const form = event.currentTarget;
+//   const inputList = form.elements;
+//   // inputList = {
+//   // userName: input
+//   // password: input
+//   // }
+//   inputList.userName;
+//   inputList.password;
 
-// list.addEventListener("click", listHandler);
-
-// const lightbox = new SimpleLightbox(".gallery a", {
-//   /* options */
+//   console.log(username.value, password.value);
 // });
 
-// const list = document.querySelector(".list");
-// const li = `<li>3</li>`;
-// // list.innerHTML = li;
+// const iframe = document.querySelector("#vimeo-player");
+// const player = new Vimeo.Player(iframe);
 
-// list.insertAdjacentHTML("beforeend", li);
+// console.log(player);
 
-// const button = document.querySelector("button");
-// const modal = document.querySelector(".modal");
-// function openModal() {
-//   modal.classList.add("open");
-//   window.addEventListener("keydown", KeyboardHandler);
-// }
+// player.on("timeupdate", function (time) {
+//   console.log("time", time);
+// });
 
-// function closeModal() {
-//   modal.classList.remove("open");
-//   window.removeEventListener("keydown", KeyboardHandler);
-// }
-// button.addEventListener("click", openModal);
+// localStorage.setItem("numbers", JSON.stringify(numbers));
+
+// const convertedNumbers = JSON.parse(localStorage.getItem("numbers"));
+
+// console.log(convertedNumbers);
+
+// // const markup = numbers.reduce((acc, number) => acc + `<li>${number}</li>`, ""); // string
+// const markup = numbers.map((acc, number) => acc + `<li>${number}</li>`).join("");
+
+// console.log(markup);
+
+// const list = document.querySelector("ul");
+// list.insertAdjacentHTML("beforeend", markup);
+
+const text = "Hello World";
+
+try {
+  JSON.parse(text);
+} catch (error) {
+  console.log("parsing error");
+}
+
+console.log("Hello");

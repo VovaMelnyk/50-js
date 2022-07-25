@@ -1,76 +1,88 @@
-// const text = "Hello World";
-// console.log(JSON.parse(text));
+// // for (let i = 3; i > 0; i--) {
+// //   const delay = i * 1000;
+// //   //delay = 3 * 1000 = 3000
+// //   // delay = 2 * 1000 = 2000
+// //   // delay = 1 * 1000 = 1000
+// //   setTimeout(console.log(i), delay);
+// //   // setTimeout(console.log(3), 3000);
+// //   // setTimeout(console.log(2), 2000);
+// //   // setTimeout(console.log(1), 1000);
+// // }
 
-// const form = document.querySelector("#message-form"); // отримали доступ до форми
-// const output = document.querySelector("#output"); // отримали доступ до span куди будемо виводити дані
-// const LOCALSTORAGE_KEY = "goit-example-message"; // ключ для збереження даних
+// // столкнулся с  такой проблемой(третья задача,восьмой модуль),уже настроил сохранение с импута в объект, но когда я в два поля ввел ,потом перезагрузил страницу ,данные вывелись ,и если я в след раз что-то веду в одном из инпутов ,то значение второго пустая строка  или undefine , как решить проблему эту?                                                                                                                                                           import throttle from 'lodash.throttle';
 
-// updateOutput();
+// const STORAGE_KEY_FEEDBACK = "feedback-form-state";
 
-// form.addEventListener("submit", saveMessage);
+// const dataObj = {};
 
-// function saveMessage(evt) {
-//   evt.preventDefault();
-//   localStorage.setItem(LOCALSTORAGE_KEY, form.elements.message.value);
-//   updateOutput();
-//   form.reset();
+// const formEl = document.querySelector(".feedback-form");
+// const inputEl = document.querySelector(".input-form");
+// const textareaEl = document.querySelector(".textarea-form");
+
+// function parsedObject() {
+//   if (localStorage) {
+//     const savedDataObj = localStorage.getItem(STORAGE_KEY_FEEDBACK);
+//     return JSON.parse(savedDataObj);
+//   }
 // }
 
-// function updateOutput() {
-//   output.textContent = localStorage.getItem(LOCALSTORAGE_KEY) || "";
+// function saveDataFormInObject(evt) {
+//   dataObj[evt.target.name] = evt.target.value;
+//   localStorage.setItem(STORAGE_KEY_FEEDBACK, JSON.stringify(dataObj));
 // }
 
-// const form = document.querySelector("#message-form");
+// function checkDataInStorage(data) {
+//   console.log(data);
 
-// console.log(form.elements);
-// // const userName = document.querySelector(".user-name");
+//   //   console.log(localStorage);
+//   if (data) {
+//     // console.log(data);
+//     inputEl.value = data.email || "";
+//     textareaEl.value = data.message || "";
+//   }
+// }
 
-// form.addEventListener("submit", (event) => {
+// function clearLocalStorage(event) {
 //   event.preventDefault();
-//   //   const {
-//   //     elements: { username, password },
-//   //   } = event.currentTarget;
-//   const form = event.currentTarget;
-//   const inputList = form.elements;
-//   // inputList = {
-//   // userName: input
-//   // password: input
-//   // }
-//   inputList.userName;
-//   inputList.password;
 
-//   console.log(username.value, password.value);
-// });
+//   //   console.log(dataObj);
+//   //   console.log(dataObj.email);
+//   //   console.log(dataObj.message);
 
-// const iframe = document.querySelector("#vimeo-player");
-// const player = new Vimeo.Player(iframe);
+//   formEl.reset();
+//   localStorage.removeItem(STORAGE_KEY_FEEDBACK);
+// }
 
-// console.log(player);
+// checkDataInStorage(parsedObject());
+// formEl.addEventListener("input", saveDataFormInObject, 500);
+// formEl.addEventListener("submit", clearLocalStorage);
+// // я понимаю что ошибка в том, что в  случае моей проблемы значение свойств data.email или data.message  равно undefine, но как решить проблему не могу понять
 
-// player.on("timeupdate", function (time) {
-//   console.log("time", time);
-// });
+// 1) Потрібно задати дедлайн
+// 2) Потрібно задати поточну дату
+// 3) Потрібно знайти їх різницю
+// 4) Різницю конвертувати в нормальний формат для користувача
+// 5) Відобразити це все на екрані
 
-// localStorage.setItem("numbers", JSON.stringify(numbers));
+const deadline = new Date(2023, 0, 1);
+const daysElement = document.querySelector(".days");
+const hoursElement = document.querySelector(".hours");
+const minutesElement = document.querySelector(".minutes");
+const secondsElement = document.querySelector(".seconds");
+function timer() {
+  const today = new Date();
+  const delta = deadline - today;
+  const seconds = Math.floor(delta / 1000) % 60;
+  const minutes = Math.floor(delta / 1000 / 60) % 60;
+  const hours = Math.floor(delta / 1000 / 60 / 60) % 24;
+  const days = Math.floor(delta / 1000 / 60 / 60 / 24);
 
-// const convertedNumbers = JSON.parse(localStorage.getItem("numbers"));
-
-// console.log(convertedNumbers);
-
-// // const markup = numbers.reduce((acc, number) => acc + `<li>${number}</li>`, ""); // string
-// const markup = numbers.map((acc, number) => acc + `<li>${number}</li>`).join("");
-
-// console.log(markup);
-
-// const list = document.querySelector("ul");
-// list.insertAdjacentHTML("beforeend", markup);
-
-const text = "Hello World";
-
-try {
-  JSON.parse(text);
-} catch (error) {
-  console.log("parsing error");
+  daysElement.textContent = days < 10 ? `0${days}` : days;
+  hoursElement.textContent = hours < 10 ? `0${hours}` : hours;
+  minutesElement.textContent = minutes < 10 ? `0${minutes}` : minutes;
+  secondsElement.textContent = seconds < 10 ? `0${seconds}` : seconds;
 }
 
-console.log("Hello");
+setInterval(timer, 1000);
+
+// 01:54:12 - 12 => остача від неповної хвилини

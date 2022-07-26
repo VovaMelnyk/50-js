@@ -45,54 +45,55 @@
 // 5) Потрібно считати данні з атрибута data - source і підставити їх в модальне вікно
 // 6) Має зявитися модальне вікно з картинкою я ви отримали з атрибута data-source
 
-// const technologies = [
-//   {
-//     title: "HTML",
-//     description: "HyperText Markup Language",
-//   },
-//   {
-//     title: "CSS",
-//     description: "Cascading Style Sheets",
-//   },
-//   {
-//     title: "JavaScript",
-//     description: "JavaScript language",
-//   },
-//   {
-//     title: "React",
-//     description: "JavaScript library",
-//   },
-// ];
+ const technologies = [
+   {
+     title: "HTML",
+    description: "HyperText Markup Language",
+   },
+  {
+     title: "CSS",
+     description: "Cascading Style Sheets",
+   },
+   {
+     title: "JavaScript",
+     description: "JavaScript language",
+   },
+   {
+     title: "React",
+     description: "JavaScript library",
+  },
+ ];
 
-// function createLi(array) {
-//   return array.reduce(
-//     (acc, item) =>
-//       acc + `<li data-description = "${item.description}">${item.title}</li>`,
-//     ""
-//   );
-// }
+/*function createLi(array) {
+   return array.reduce(
+     (acc, item) =>
+       acc + `<li data-description = "${item.description}">${item.title}</li>`,
+     ""
+   );
+ }*/
+const list = document.querySelector(".list");
+ 
+ function createLi(array) {
+   return array
+     .map(
+       (item) =>
+         `<li data-description = "${item.description}">${item.title}</li>`
+     )
+     .join("");
+ }
 
-// function createLi(array) {
-//   return array
-//     .map(
-//       (item) =>
-//         `<li data-description = "${item.description}">${item.title}</li>`
-//     )
-//     .join("");
-// }
+const result = createLi(technologies);
 
-// const result = createLi(technologies);
+list.insertAdjacentHTML("beforeend", result);
+ 
+const p = document.querySelector(".description");
 
-// const list = document.querySelector(".list");
-// const p = document.querySelector(".description");
-// list.insertAdjacentHTML("beforeend", result);
+ function listHandler(e) {
+   const description = e.target.dataset.description;
+   p.textContent = description;
+ }
 
-// function listHandler(e) {
-//   const description = e.target.dataset.description;
-//   p.textContent = description;
-// }
-
-// list.addEventListener("click", listHandler);
+ list.addEventListener("click", listHandler);
 
 // const lightbox = new SimpleLightbox(".gallery a", {
 //   /* options */
